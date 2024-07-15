@@ -1,0 +1,22 @@
+services:
+  fpo:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    image: dev-fpo
+    container_name: dev-fpo
+    env_file:
+      - .env
+   
+  db:
+    image: postgres:13
+    container_name: dev-db
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
